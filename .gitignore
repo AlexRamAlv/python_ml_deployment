@@ -2,4 +2,6 @@
 .venv/
 notebooks/.ipynb_checkpoints/
 *.json
-src/
+__pycache__/
+report.txt
+*.png
