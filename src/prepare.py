@@ -21,13 +21,13 @@ finantial_dataset = api.read(
 movies_dataset = api.read(
     path="dataset/movies.csv", remote="dataset-tracker", encoding="utf8"
 )
-opening_gorss_dataset = api.read(
+opening_gross_dataset = api.read(
     path="dataset/opening_gross.csv", remote="dataset-tracker", encoding="utf8"
 )
 
 finantial_data = pd.read_csv(StringIO(finantial_dataset))
 movies_data = pd.read_csv(StringIO(movies_dataset))
-opening_gorss_data = pd.read_csv(StringIO(opening_gorss_dataset))
+opening_gross_data = pd.read_csv(StringIO(opening_gross_dataset))
 
 numeric_column_mask = (movies_data.dtypes == float) | (movies_data.dtypes == int)
 numeric_column = [
@@ -40,10 +40,11 @@ finantial_and_movies_data = pd.merge(
     finantial_data, movies_data, on="movie_title", how="left"
 )
 full_movie_data = pd.merge(
-    opening_gorss_data, finantial_and_movies_data, on="movie_title", how="left"
+    opening_gross_data, finantial_and_movies_data, on="movie_title", how="left"
 )
 
 full_movie_data = full_movie_data.drop(["gross", "movie_title"], axis=1)
+breakpoint()
 
 full_movie_data.to_csv("dataset/full_data.csv", index=False)
 

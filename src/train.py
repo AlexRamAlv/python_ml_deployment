@@ -1,4 +1,4 @@
-from utils import update_model, save_metrics_report, get_model_performance_test
+from src.utils import update_model, save_metrics_report, get_model_performance_test
 from sklearn.model_selection import train_test_split, cross_validate, GridSearchCV
 from sklearn.pipeline import Pipeline
 from sklearn.impute import SimpleImputer
@@ -40,7 +40,7 @@ logging.info("Setting hyperparameter to tune...")
 param_tunning = {"core_model__n_estimators": range(20, 301, 20)}
 grid_search = GridSearchCV(model, param_grid=param_tunning, scoring="r2", cv=5)
 
-logging.info("Staring grid serach...")
+logging.info("Starting grid serach...")
 grid_search.fit(X_train, y_train)
 
 logging.info("Cross validaiting with best model...")
